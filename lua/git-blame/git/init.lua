@@ -20,7 +20,6 @@ function Git:blame(line_number, path, file)
     end
     --- @type string[]
     local result = blame_line
-    print(vim.inspect(code))
 
     return result, nil
 end
@@ -57,7 +56,6 @@ function Git:FormatBlame(blame_lines)
         author_mail = blame_lines[3],
         author_time = os.date("%Y-%m-%d %H:%M:%S", blame_lines[4]),
     }
-    print(vim.inspect(result))
     return result, nil
 end
 

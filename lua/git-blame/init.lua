@@ -24,7 +24,7 @@ function M.blame()
     end
 
     local blame, err = Git:blame(line_number, path, file)
-    if err then
+    if err ~= nil then
         -- TODO: handle error
         print(err.message)
         return
@@ -32,15 +32,14 @@ function M.blame()
     if not blame then
         return
     end
-    local format, formatErr = Git:FormatBlame(blame)
-    if formatErr == nil then
+    local result, formatErr = Git:FormatBlame(blame)
+    if formatErr ~= nil then
         -- TODO: handle error
         print(vim.inspect(err))
         return
     end
-    print(vim.inspect(format))
 
-    Ui:Show(format, line_number)
+    Ui:Show(result, line_number)
 end
 
 return M
