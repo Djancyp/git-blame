@@ -10,6 +10,11 @@ local M = {}
 function M.setup(opts)
     opts = opts or {}
     opts = Utils:merge2Tables(options, opts)
+    M.set_autocmd()
+end
+
+function M.set_autocmd()
+    vim.api.nvim_create_user_command("GitBlame", "lua require('git-blame').blame()", {})
 end
 
 function M.blame()
