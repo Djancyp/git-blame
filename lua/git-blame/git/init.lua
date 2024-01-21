@@ -11,7 +11,7 @@ local Git = {}
 --- @return string | nil,error
 function Git:blame(line_number, path, file)
     local code = "cd " ..
-        path .. " && " .. "git blame -L " .. line_number .. "," .. line_number .. " " .. path
+        path .. " && " .. "git blame -L " .. line_number .. "," .. line_number .. " " .. file
     print(code)
     local blame_line = vim.fn.systemlist(code)
     -- check if blame_line is table
