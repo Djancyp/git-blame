@@ -33,9 +33,9 @@ end
 
 --- This function return file path of current buffer.
 ---
---- @return string | string[]
+--- @return any
 function Utils:get_current_file()
-    return vim.fn.expand("%:p")
+    return vim.fn.shellescape(vim.fn.expand("%:p"))
 end
 
 --- This function return file path of current buffer.
@@ -51,9 +51,16 @@ end
 
 --- This function return current file folder path.
 ---
---- @return string | string[]
+--- @return string
 function Utils:get_current_file_folder()
-    return vim.fn.expand("%:p:h")
+    return vim.fn.shellescape(vim.fn.expand("%:p:h"))
+end
+
+--- This function runs commands in the shell and returns the output.
+--- function get table of cmd and run them asnyc
+--- @param cmd string[]
+--- @return string
+function Utils:run_shell_command(cmd)
 end
 
 return Utils
