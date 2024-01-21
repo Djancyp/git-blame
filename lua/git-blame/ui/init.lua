@@ -30,7 +30,7 @@ function Ui:Show(table, current_line)
         width = t3[1]:len() + 2,
         height = #t3,
         style = 'minimal',
-        border = 'single',
+        border = 'double',
     })
 
     -- Set the new window as the current window
