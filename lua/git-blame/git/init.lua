@@ -24,6 +24,26 @@ function Git:blame(line_number, path, file)
     return result, nil
 end
 
+--- This function get the log with branch name.
+---
+--- Example:git log -L 1,1:file
+--- @param commit_number string
+--- @param path string
+function Git:log(commit_number, path)
+    local code = "cd " ..
+    path .. " && " .. "git for-each-ref --format='%(refname:short) %(objectname)' | grep " .. commit_number
+
+    local log = vim.fn.systemlist(code)
+    -- check if log is table
+    if type(log) ~= "table" then
+        return nil, { message = "Not Committed Yet" }
+    end
+    --- @type string[]
+    local result = log
+
+    return result, nil
+end
+
 --- @class FormatBlame
 --- @field commit_hash string
 --- @field author string
@@ -48,6 +68,10 @@ function Git:FormatBlame(blame_lines)
     blame_lines[2] = Utils:strip_ansi_escape_codes(blame_lines[2]):match("%S+%s+(%S+)")
     blame_lines[3] = Utils:strip_ansi_escape_codes(blame_lines[3]):match("%S+%s+(%S+)")
     blame_lines[4] = Utils:strip_ansi_escape_codes(blame_lines[4]):match("%S+%s+(%S+)")
+    
+    -- summary get all after summary
+    -- Ex: summary test test test
+    blame_lines[10] = Utils:strip_ansi_escape_codes(blame_lines[10]):match("summary%s*(.+)")
 
     -- get commit hash
     local result = {
@@ -55,6 +79,7 @@ function Git:FormatBlame(blame_lines)
         author = blame_lines[2],
         author_mail = blame_lines[3],
         author_time = os.date("%Y-%m-%d %H:%M:%S", blame_lines[4]),
+        summary = blame_lines[10],
     }
     return result, nil
 end

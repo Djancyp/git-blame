@@ -32,6 +32,7 @@ function M.blame()
     if not blame then
         return
     end
+
     local result, formatErr = Git:FormatBlame(blame)
     if formatErr ~= nil then
         -- TODO: handle error
@@ -39,6 +40,8 @@ function M.blame()
         return
     end
 
+    -- local log, logErr = Git:log(result.commit_hash, path)
+    -- print(vim.inspect(log))
     Ui:Show(result, line_number)
 end
 
