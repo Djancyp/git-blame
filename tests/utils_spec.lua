@@ -27,6 +27,7 @@ describe("Utils", function()
 
     describe("get_current_file", function()
         it("should return file path of current buffer", function()
+            -- TODO fix this test
             local file = Utils:get_current_file()
             -- check if file contains "tests/utils_spec.lua"
             local result = true
@@ -46,6 +47,7 @@ describe("Utils", function()
 
     describe("get_current_file_folder", function()
         it("should return current file folder path", function()
+            -- TODO fix this test
             local folder = Utils:get_current_file_folder()
             local result = true
             local expected = true
