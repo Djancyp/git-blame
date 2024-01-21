@@ -2,7 +2,7 @@ local Utils = require("git-blame.utils")
 
 describe("Utils", function()
     describe("merge2Tables", function()
-        it("should merge two tables", function()
+        it("should merge two tables t2 should overite t1", function()
             local t1 = { a = 1, b = 2 }
             local t2 = { b = 3, c = 4 }
             local t3 = Utils:merge2Tables(t1, t2)
