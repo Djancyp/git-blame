@@ -1,6 +1,7 @@
 local options = require("git-blame.otps")
 local Utils = require("git-blame.utils")
 local Git = require("git-blame.git")
+local Ui = require("git-blame.ui")
 local M = {}
 
 --- This function is setup function.
@@ -15,11 +16,31 @@ function M.blame()
     local file = Utils:get_current_file()
     local path = Utils:get_current_file_folder()
     local line_number = Utils:get_pointer_line()
+    if not path then
+        return
+    end
+    if not file then
+        return
+    end
 
     local blame, err = Git:blame(line_number, path, file)
     if err then
-        vim.print(err.message)
+        -- TODO: handle error
+        print(err.message)
+        return
     end
+    if not blame then
+        return
+    end
+    local format, formatErr = Git:FormatBlame(blame)
+    if formatErr == nil then
+        -- TODO: handle error
+        print(vim.inspect(err))
+        return
+    end
+    print(vim.inspect(format))
+
+    Ui:Show(format, line_number)
 end
 
 return M
