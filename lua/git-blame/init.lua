@@ -1,7 +1,7 @@
-local options = require("git-blame.otps")
-local Utils = require("git-blame.utils")
 local Git = require("git-blame.git")
 local Ui = require("git-blame.ui")
+local Utils = require("git-blame.utils")
+local options = require("git-blame.otps")
 local M = {}
 
 --- This function is setup function.
@@ -14,7 +14,11 @@ function M.setup(opts)
 end
 
 function M.set_autocmd()
-    vim.api.nvim_create_user_command("GitBlame", "lua require('git-blame').blame()", {})
+    vim.api.nvim_create_user_command(
+        "GitBlame",
+        "lua require('git-blame').blame()",
+        {}
+    )
 end
 
 function M.blame()
