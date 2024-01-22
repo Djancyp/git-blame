@@ -1,8 +1,6 @@
 local Git = require("git-blame.git")
 local Utils = require("git-blame.utils")
 
-
-
 describe("Git", function()
     it("should return blame line", function()
         local result = false
@@ -12,10 +10,9 @@ describe("Git", function()
         local line_number = Utils:get_pointer_line()
 
         local blame, err = Git:blame(line_number, path, file)
-        if err then
+        if err ~= nil then
             print(err.message)
         end
-        blame = Utils:strip_ansi_escape_codes(blame)
         if blame then
             result = true
         end
