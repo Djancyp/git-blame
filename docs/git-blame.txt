@@ -1,0 +1,13 @@
+*git-balme.txt*        For Neovim >= 0.8.0        Last change: 22/01/2024
+
+==============================================================================
+
+1. Introduction                                     *git-balme-introduction*
+2. Installation and requirements                    *git-balme-installation*
+3. Usage                                             *git-balme-usage*
+4. Configuration                                    *git-balme-configuration*
+5. Commands                                         *git-balme-commands*
+
+==============================================================================
+
+1. Introduction                                     *git-balme-introduction*
