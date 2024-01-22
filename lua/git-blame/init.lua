@@ -30,8 +30,6 @@ function M.blame()
 
     local blame, err = Git:blame(line_number, path, file)
     if err ~= nil then
-        -- TODO: handle error
-        print(err.message)
         return
     end
     if not blame then
@@ -40,8 +38,6 @@ function M.blame()
 
     local result, formatErr = Git:FormatBlame(blame)
     if formatErr ~= nil then
-        -- TODO: handle error
-        print(vim.inspect(err))
         return
     end
 
